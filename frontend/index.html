@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Typeahead</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <h1>Search Typeahead</h1>
+        <p class="sub">
+          Distributed cache · consistent hashing · recency-aware trending · batched writes
+        </p>
+      </header>
+
+      <section class="search-card">
+        <div class="mode-row">
+          <span class="mode-label">Ranking</span>
+          <div class="seg" role="tablist" aria-label="Ranking mode">
+            <button class="seg-btn is-active" data-mode="basic" role="tab">
+              Basic <small>by popularity</small>
+            </button>
+            <button class="seg-btn" data-mode="recency" role="tab">
+              Recency-aware <small>trending boost</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="search-wrap">
+          <div class="input-row">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input
+              id="search"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="Start typing… e.g. iphone, java, running"
+              aria-label="Search"
+              aria-controls="suggestions"
+              aria-expanded="false"
+              role="combobox"
+            />
+            <span id="spinner" class="spinner" hidden></span>
+            <button id="searchBtn" class="go-btn">Search</button>
+          </div>
+
+          <ul id="suggestions" class="suggestions" role="listbox" hidden></ul>
+        </div>
+
+        <p id="status" class="status" role="status"></p>
+
+        <div id="result" class="result" hidden>
+          <span class="result-badge">API response</span>
+          <code id="resultBody"></code>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Trending now</h2>
+            <button id="refreshTrending" class="ghost-btn">refresh</button>
+          </div>
+          <ol id="trending" class="trending"></ol>
+          <p class="hint">
+            Submit the same query a few times, then watch it climb — and decay back
+            down over the next few minutes.
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head"><h2>Live metrics</h2></div>
+          <dl id="metrics" class="metrics">
+            <div><dt>Cache hit rate</dt><dd id="m-hit">—</dd></div>
+            <div><dt>Last lookup served by</dt><dd id="m-source">—</dd></div>
+            <div><dt>p95 latency</dt><dd id="m-p95">—</dd></div>
+            <div><dt>Raw searches</dt><dd id="m-raw">—</dd></div>
+            <div><dt>DB writes (after batching)</dt><dd id="m-writes">—</dd></div>
+            <div><dt>Write reduction</dt><dd id="m-reduction">—</dd></div>
+            <div><dt>Owning cache node</dt><dd id="m-node">—</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <footer class="foot">
+        <span>Keyboard: ↑ ↓ to move · Enter to search · Esc to close</span>
+      </footer>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+# dependencies
+backend/node_modules/
+
+# TypeScript build output
+backend/dist/
+
+# runtime data (NOT committed; the DB re-seeds from queries.json on first start).
+# queries.json IS committed so the repo runs on clone without `npm run generate`.
+backend/data/typeahead.db
+backend/data/typeahead.db-shm
+backend/data/typeahead.db-wal
+backend/data/pending.wal
+
+# OS / editor noise
+.DS_Store
+*.log
+
+# the original assignment export (root-level .html only; frontend/index.html is kept)
+/*.html
