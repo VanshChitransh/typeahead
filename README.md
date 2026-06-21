@@ -15,6 +15,25 @@ build step, no external DB server).
 
 ---
 
+## Screenshots
+
+| Landing page | Typeahead suggestions (`sam`) |
+|---|---|
+| ![Landing page](screenshots/1.png) | ![Suggestions dropdown](screenshots/2.png) |
+| **Search submitted — response + trending + live metrics** | **Recency-aware ranking** |
+| ![After a search](screenshots/3.png) | ![Recency mode](screenshots/4.png) |
+| **`GET /cache/debug` — cache miss** | **`GET /cache/debug` — cache hit** |
+| ![Cache debug miss](screenshots/5.png) | ![Cache debug hit](screenshots/6.png) |
+| **`GET /cache/ring` — keyspace distribution** | **`npm run demo:hashing` — consistent-hashing proof** |
+| ![Cache ring](screenshots/7.png) | ![Consistent hashing demo](screenshots/8.png) |
+
+In shot 4, recency mode promotes `running shoes review` (score 121, only 15 recent
+searches) **above** `running shoes` (score 4.9, 80,250 all-time) — the recency
+boost in action. Shots 5–6 show the same prefix routed to its owning cache node,
+flipping from `MISS` to `HIT` once warmed.
+
+---
+
 ## 1. Quick start
 
 ```bash
